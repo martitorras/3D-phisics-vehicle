@@ -1,4 +1,4 @@
-# 3D-phisics-vehicle
+# 3D phisics vehicle
 
 ## About
 This is a 3D single player student game. You control a vehicle which goes through a circuit and has to reach a finish line.
