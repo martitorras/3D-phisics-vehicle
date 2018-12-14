@@ -7,10 +7,15 @@ Our game is like the prologue of Indiana Jones: Raiders Of The Lost Ark. The car
 
 Some obstacles:
 • Giant ball following you.
+
 • Pendulum hammers.
+
 • Spikes.
-• Narrow path
-• Close turns
+
+• Narrow path.
+
+• Close turns.
+
 • Jumps.
 
 ## Authors
