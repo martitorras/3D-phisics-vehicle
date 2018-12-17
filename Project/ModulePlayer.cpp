@@ -8,6 +8,7 @@
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
+	position = vec3(0.0f, 0.0f, 0.0f);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -97,7 +98,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(position.x, position.y, position.z);
 	
 	return true;
 }
@@ -143,6 +144,10 @@ update_status ModulePlayer::Update(float dt)
 
 	vehicle->Render();
 
+	// Update physbody position every frame (vehicle) ---------
+	vehicle->GetPos(position.x, position.y, position.z);
+
+	// Window title ---------
 	char title[80];
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
@@ -150,5 +155,7 @@ update_status ModulePlayer::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-
-
+vec3 ModulePlayer::GetPosition() const
+{
+	return position;
+}

@@ -45,3 +45,14 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	t.setOrigin(btVector3(x, y, z));
 	body->setWorldTransform(t);
 }
+
+// ---------------------------------------------------------
+// We can't cast btVector3 to vec3, so we just get the values through a reference
+void PhysBody3D::GetPos(float& x, float& y, float& z) const
+{
+	btTransform t = body->getWorldTransform();
+	btVector3 origin = t.getOrigin();
+	x = (float)origin.getX();
+	y = (float)origin.getY();
+	z = (float)origin.getZ();
+}

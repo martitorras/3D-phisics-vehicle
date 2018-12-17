@@ -20,9 +20,15 @@ public:
 	bool CleanUp();
 
 public:
+	vec3 GetPosition() const;
+
+public:
 
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
 	float brake;
+
+private:
+	vec3 position;
 };
