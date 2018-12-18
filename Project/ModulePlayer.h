@@ -37,4 +37,7 @@ private:
 	uint max_gears;
 	int* max_speeds_per_gear;
 	int* max_accelerations_per_gear;
+
+private:
+	int sound_gear_shift;
 };

@@ -22,6 +22,8 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 	{						
 		800, 600, 400, 325, 175
 	};
+
+	sound_gear_shift = 0;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -34,6 +36,8 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
+
+	sound_gear_shift = App->audio->LoadFx("Assets/Sound_Effects/Gear_Shift.wav");
 
 	VehicleInfo car;
 
@@ -173,6 +177,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
 	{
+		App->audio->PlayFx(1);
 		if (current_gear < max_gears)
 		{
 			current_gear++;
@@ -181,6 +186,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
 	{
+		App->audio->PlayFx(1);
 		if (current_gear > 1)
 		{
 			current_gear--;
@@ -225,7 +231,7 @@ update_status ModulePlayer::Update(float dt)
 
 	// Window title ---------
 	char title[80];
-	sprintf_s(title, "Speed: %.1f Km/h, Gear: %d, Turn angle: %.2f", vehicle->GetKmh(), current_gear, turn * RADTODEG);
+	sprintf_s(title, "Speed: %.2f Km/h, Gear: %d, Turn angle: %.2f", vehicle->GetKmh(), current_gear, turn * RADTODEG);
 	App->window->SetTitle(title);
 
 
