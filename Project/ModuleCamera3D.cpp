@@ -64,7 +64,7 @@ update_status ModuleCamera3D::Update(float dt)
 	
 	// Camera movement -------------
 	// Note: this camera is like it was attached staticly to the player. For a cool dynamic effect, if you turn the car,
-	// you can change for example the -15.0f for 10.0f let's say (on the temp_player_position.z or .x). Like so,
+	// you can change for example the -15.0f for -10.0f let's say (on the temp_player_position.z or .x). Like so,
 	// when you look at the defined axis the position of the camera to the player will change, depending on the
 	// axis the camera is looking. For now, let's keep it static.
 	vec3 temp_player_position = App->player->GetPosition();

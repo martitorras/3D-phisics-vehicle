@@ -9,10 +9,26 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 {
 	turn = acceleration = brake = 0.0f;
 	position = vec3(0.0f, 0.0f, 0.0f);
+
+	current_gear = 1u;
+	max_gears = 5u;
+
+	max_speeds_per_gear = new int[max_gears] 
+	{
+		20, 50, 80, 100, 120
+	};
+
+	max_accelerations_per_gear = new int[max_gears]
+	{
+		800, 600, 400, 200, 100
+	};
 }
 
 ModulePlayer::~ModulePlayer()
-{}
+{
+	delete max_speeds_per_gear;
+	delete max_accelerations_per_gear;
+}
 
 // Load assets
 bool ModulePlayer::Start()
@@ -118,7 +134,57 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION;
+		switch (current_gear)
+		{
+		case 1:
+			if (vehicle->GetKmh() < (float)max_speeds_per_gear[0])
+			{
+				acceleration = max_accelerations_per_gear[0];
+			}
+			break;
+		case 2:
+			if (vehicle->GetKmh() < (float)max_speeds_per_gear[1])
+			{
+				acceleration = max_accelerations_per_gear[1];
+			}
+			break;
+		case 3:
+			if (vehicle->GetKmh() < (float)max_speeds_per_gear[2])
+			{
+				acceleration = max_accelerations_per_gear[2];
+			}
+			break;
+		case 4:
+			if (vehicle->GetKmh() < (float)max_speeds_per_gear[3])
+			{
+				acceleration = max_accelerations_per_gear[3];
+			}
+			break;
+		case 5: 
+			if (vehicle->GetKmh() < (float)max_speeds_per_gear[4])
+			{
+				acceleration = max_accelerations_per_gear[4];
+			}
+			break;
+		default: 
+			break;
+		}
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
+	{
+		if (current_gear < max_gears)
+		{
+			current_gear++;
+		}
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
+	{
+		if (current_gear > 1)
+		{
+			current_gear--;
+		}
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -149,7 +215,7 @@ update_status ModulePlayer::Update(float dt)
 
 	// Window title ---------
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "Speed: %.1f Km/h, Gear: %d", vehicle->GetKmh(), current_gear);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
