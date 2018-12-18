@@ -3,6 +3,7 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "Primitive.h"
+#include "p2SString.h"
 
 #define MAX_SNAKE 2
 
@@ -20,6 +21,8 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+
+	int GetCurrentMusicTrack() const;
 
 public:
 	/*
@@ -41,4 +44,9 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
+	// Music
+	int current_music_track;
+	p2SString track_01;
+	p2SString track_02;
 };

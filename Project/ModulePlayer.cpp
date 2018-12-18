@@ -231,7 +231,7 @@ update_status ModulePlayer::Update(float dt)
 
 	// Window title ---------
 	char title[80];
-	sprintf_s(title, "Speed: %.2f Km/h, Gear: %d, Turn angle: %.2f", vehicle->GetKmh(), current_gear, turn * RADTODEG);
+	sprintf_s(title, "Speed: %.2f Km/h, Gear: %d, Turn angle: %.2f, Music: %d", vehicle->GetKmh(), current_gear, turn * RADTODEG, App->scene_intro->GetCurrentMusicTrack());
 	App->window->SetTitle(title);
 
 
