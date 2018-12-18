@@ -15,12 +15,12 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 
 	max_speeds_per_gear = new int[max_gears] 
 	{
-		20, 50, 80, 100, 120
+		20, 35, 65, 90, 120
 	};
 
 	max_accelerations_per_gear = new int[max_gears]
-	{
-		800, 600, 400, 200, 100
+	{						
+		800, 600, 400, 325, 175
 	};
 }
 
@@ -73,7 +73,7 @@ bool ModulePlayer::Start()
 	car.wheels[0].radius = wheel_radius;
 	car.wheels[0].width = wheel_width;
 	car.wheels[0].front = true;
-	car.wheels[0].drive = true;
+	car.wheels[0].drive = false;
 	car.wheels[0].brake = false;
 	car.wheels[0].steering = true;
 
@@ -85,7 +85,7 @@ bool ModulePlayer::Start()
 	car.wheels[1].radius = wheel_radius;
 	car.wheels[1].width = wheel_width;
 	car.wheels[1].front = true;
-	car.wheels[1].drive = true;
+	car.wheels[1].drive = false;
 	car.wheels[1].brake = false;
 	car.wheels[1].steering = true;
 
@@ -97,7 +97,7 @@ bool ModulePlayer::Start()
 	car.wheels[2].radius = wheel_radius;
 	car.wheels[2].width = wheel_width;
 	car.wheels[2].front = false;
-	car.wheels[2].drive = false;
+	car.wheels[2].drive = true;
 	car.wheels[2].brake = true;
 	car.wheels[2].steering = false;
 
@@ -109,7 +109,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].radius = wheel_radius;
 	car.wheels[3].width = wheel_width;
 	car.wheels[3].front = false;
-	car.wheels[3].drive = false;
+	car.wheels[3].drive = true;
 	car.wheels[3].brake = true;
 	car.wheels[3].steering = false;
 
