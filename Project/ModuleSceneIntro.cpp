@@ -6,7 +6,8 @@
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	test_cube_physbody = nullptr;
+	initial_road_left_border_body = nullptr;
+	initial_road_right_border_body = nullptr;
 
 	current_music_track = 1;
 
@@ -16,8 +17,10 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	plane.constant = 0.0f;
 
 
-	test_cube.size = vec3(2.0f, 2.0f, 2.0f);
-	test_cube.SetPos(1.0f, 1.0f, 1.0f);
+	initial_road_left_border_cube.size = vec3(2.0f, 2.0f, 50.0f);
+	initial_road_left_border_cube.SetPos(8.0f, 1.0f, 1.0f);
+	initial_road_right_border_cube.size = vec3(2.0f, 2.0f, 50.0f);
+	initial_road_right_border_cube.SetPos(-8.0f, 1.0f, 1.0f);
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -30,8 +33,10 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 
 	/* ADD BODIES */
-	test_cube_physbody = App->physics->AddBody(test_cube, 10000.0f);
-	test_cube_physbody->collision_listeners.add(this);
+	initial_road_left_border_body = App->physics->AddBody(initial_road_left_border_cube, 10000.0f);
+	initial_road_left_border_body->collision_listeners.add(this);
+	initial_road_right_border_body = App->physics->AddBody(initial_road_right_border_cube, 10000.0f);
+	initial_road_right_border_body->collision_listeners.add(this);
 
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
 	track_02 = "Assets/Music/Initial_D-Deja_Vu.ogg";
@@ -72,8 +77,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	/* RENDER */
 	plane.Render();
 
-	test_cube_physbody->GetTransform(&test_cube.transform);
-	test_cube.Render();
+	initial_road_left_border_body->GetTransform(&initial_road_left_border_cube.transform);
+	initial_road_left_border_cube.Render();
+	initial_road_right_border_body->GetTransform(&initial_road_left_border_cube.transform);
+	initial_road_right_border_cube.Render();
 
 	return UPDATE_CONTINUE;
 }

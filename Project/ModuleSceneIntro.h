@@ -48,9 +48,10 @@ public:
 	/* MAP OBJECTS */
 	Plane plane;
 
-	PhysBody3D* test_cube_physbody;
-	Cube test_cube;
-
+	PhysBody3D* initial_road_left_border_body;
+	Cube initial_road_left_border_cube;
+	PhysBody3D* initial_road_right_border_body;
+	Cube initial_road_right_border_cube;
 
 	// Music
 	int current_music_track;
