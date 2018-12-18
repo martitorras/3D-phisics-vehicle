@@ -130,7 +130,7 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
-	turn = acceleration = brake = 0.0f;
+	acceleration = brake = 0.0f;
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
@@ -190,13 +190,23 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
+			turn +=  TURN_STEP_DEGREES;
+	}
+	else
+	{
+		if (turn > 0.0f)
+			turn -= TURN_STEP_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
+			turn -= TURN_STEP_DEGREES;
+	}
+	else
+	{
+		if (turn < 0.0f)
+			turn += TURN_STEP_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
@@ -215,8 +225,9 @@ update_status ModulePlayer::Update(float dt)
 
 	// Window title ---------
 	char title[80];
-	sprintf_s(title, "Speed: %.1f Km/h, Gear: %d", vehicle->GetKmh(), current_gear);
+	sprintf_s(title, "Speed: %.1f Km/h, Gear: %d, Turn angle: %.2f", vehicle->GetKmh(), current_gear, turn * RADTODEG);
 	App->window->SetTitle(title);
+
 
 	return UPDATE_CONTINUE;
 }
