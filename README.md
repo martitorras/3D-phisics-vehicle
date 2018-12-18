@@ -30,3 +30,23 @@ Marcos Freixas, Gerard.
 Torras Isanta, Martí.
 
 • GitHub account: [martitorras](https://github.com/martitorras)
+
+## Controls
+
+**LEFT_ARROW:** Turn left
+
+**RIGHT_ARROW:** Turn right
+
+**UP_ARROW:** Accelerate
+
+**DOWN_ARROW:** Brake
+
+**Z:** Gear up
+
+**X::* Gear down
+
+## Innovation
+
+• Manual transmission
+
+• Smooth turning
