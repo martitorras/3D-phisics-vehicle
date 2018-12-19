@@ -8,7 +8,7 @@
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
-	position = vec3(0.0f, 0.0f, 0.0f);
+	position = vec3(0.0f, 0.0f, -5.0f);
 
 	current_gear = 1u;
 	max_gears = 6u;

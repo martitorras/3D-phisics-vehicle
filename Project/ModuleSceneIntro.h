@@ -5,6 +5,7 @@
 #include "Primitive.h"
 #include "p2SString.h"
 #include "Color.h"
+#include "Bullet/include/btBulletDynamicsCommon.h"
 
 // #define MAX_SNAKE 2
 
@@ -52,6 +53,8 @@ public:
 	Cube enemy_cube;
 	PhysBody3D* enemy_body_2;
 	Cube enemy_cube_2;
+
+	btHingeConstraint* hinge;
 
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;
