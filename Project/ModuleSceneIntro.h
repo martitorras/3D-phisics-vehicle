@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 #include "p2SString.h"
+#include "Color.h"
 
 // #define MAX_SNAKE 2
 
@@ -24,34 +25,26 @@ public:
 
 	int GetCurrentMusicTrack() const;
 
+	Cube CreateCube(vec3 position = { 0.0f, 0.0f, 0.0f }, vec3 size = { 0.0f, 0.0f, 0.0f }, float mass = 0.0f, Color color = White, bool is_collider = true);
+
 public:
-	/*
-	PhysBody3D* pb_snake[MAX_SNAKE];
+	/*PhysBody3D* pb_snake[MAX_SNAKE];
 	Sphere s_snake[MAX_SNAKE];
 
 	PhysBody3D* pb_snake2[MAX_SNAKE];
-	Sphere s_snake2[MAX_SNAKE];
-	*/
-
-	/*PhysBody3D* pb_chassis;
-	Cube p_chassis;
-
-	PhysBody3D* pb_wheel;
-	Cylinder p_wheel;
-
-	PhysBody3D* pb_wheel2;
-	Cylinder p_wheel2;
-
-	PhysMotor3D* left_wheel;
-	PhysMotor3D* right_wheel;*/
+	Sphere s_snake2[MAX_SNAKE];*/
 
 	/* MAP OBJECTS */
 	Plane plane;
 
-	PhysBody3D* initial_road_left_border_body;
-	Cube initial_road_left_border_cube;
-	PhysBody3D* initial_road_right_border_body;
-	Cube initial_road_right_border_cube;
+	Cube left_main_border;
+	Cube right_main_border;
+	Cube goal_left_pilar;
+	Cube goal_right_pilar;
+	Cube goal_top_beam;
+
+	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
+	p2List<Cube> cubes;
 
 	// Music
 	int current_music_track;

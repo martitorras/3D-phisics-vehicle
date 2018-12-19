@@ -6,21 +6,11 @@
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	initial_road_left_border_body = nullptr;
-	initial_road_right_border_body = nullptr;
-
 	current_music_track = 1;
 
-
-	/* MAP OBJECTS */
+	/* MAP MAIN PLANE */
 	plane.normal = vec3(0.0f, 1.0f, 0.0f);
 	plane.constant = 0.0f;
-
-
-	initial_road_left_border_cube.size = vec3(2.0f, 2.0f, 50.0f);
-	initial_road_left_border_cube.SetPos(8.0f, 1.0f, 1.0f);
-	initial_road_right_border_cube.size = vec3(2.0f, 2.0f, 50.0f);
-	initial_road_right_border_cube.SetPos(-8.0f, 1.0f, 1.0f);
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -33,10 +23,11 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 
 	/* ADD BODIES */
-	initial_road_left_border_body = App->physics->AddBody(initial_road_left_border_cube, 10000.0f);
-	initial_road_left_border_body->collision_listeners.add(this);
-	initial_road_right_border_body = App->physics->AddBody(initial_road_right_border_cube, 10000.0f);
-	initial_road_right_border_body->collision_listeners.add(this);
+	left_main_border = CreateCube(vec3(8.0f, 1.0f, 0.0f), vec3(2.0f, 2.0f, 60.0f));
+	right_main_border = CreateCube(vec3(-8.0f, 1.0f, 0.0f), vec3(2.0f, 2.0f, 60.0f));
+	goal_left_pilar = CreateCube(vec3(-10.0f, 5.0f, 0.0f), vec3(0.5f, 10.0f, 0.5f));
+	goal_right_pilar = CreateCube(vec3(10.0f, 5.0f, 0.0f), vec3(0.5f, 10.0f, 0.5f));
+	goal_top_beam = CreateCube(vec3(0.0f, 9.5f, 0.0f), vec3(19.5f, 1.0f, 0.5f));
 
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
 	track_02 = "Assets/Music/Initial_D-Deja_Vu.ogg";
@@ -53,6 +44,9 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
+
+	// Delete lists
+	cubes.clear();
 
 	return true;
 }
@@ -74,13 +68,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	}
 
 
-	/* RENDER */
+	/* RENDER MAIN PLANE */
 	plane.Render();
 
-	initial_road_left_border_body->GetTransform(&initial_road_left_border_cube.transform);
-	initial_road_left_border_cube.Render();
-	initial_road_right_border_body->GetTransform(&initial_road_left_border_cube.transform);
-	initial_road_right_border_cube.Render();
+	/* RENDER PRIMITIVES */
+	for (p2List_item<Cube>* cube_item = cubes.getFirst(); cube_item != nullptr; cube_item = cube_item->next)
+	{
+		cube_item->data.Render();
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -93,4 +88,23 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 int ModuleSceneIntro::GetCurrentMusicTrack() const
 {
 	return current_music_track;
+}
+
+// Note: if the mass is 0.0f, we don't need to add the collision listener. We suppose in this function that
+// the mass will be 0.0f as default. It won't work otherwise. If we want to update the collider,
+// we need to crate the PhysBody3D* manually.
+Cube ModuleSceneIntro::CreateCube(vec3 position, vec3 size, float mass, Color color, bool is_collider)
+{
+	Cube cube(size.x, size.y, size.z);
+	cube.SetPos(position.x, position.y, position.z);
+	cube.color = color;
+
+	if (is_collider)
+	{
+		App->physics->AddBody(cube, mass); 
+	}
+
+	cubes.add(cube);
+
+	return cube;
 }
