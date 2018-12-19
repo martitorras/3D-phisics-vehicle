@@ -7,7 +7,7 @@ struct PhysVehicle3D;
 
 #define TURN_DEGREES 40.0f * DEGTORAD
 #define TURN_STEP_DEGREES 1.0f * DEGTORAD
-#define BRAKE_POWER 50.0f
+#define BRAKE_POWER 35.0f
 
 class ModulePlayer : public Module
 {

@@ -25,7 +25,8 @@ public:
 
 	int GetCurrentMusicTrack() const;
 
-	Cube CreateCube(vec3 position = { 0.0f, 0.0f, 0.0f }, vec3 size = { 0.0f, 0.0f, 0.0f }, float mass = 0.0f, Color color = White, bool is_collider = true);
+	Cube CreateCube(vec3 position = { 0.0f, 0.0f, 0.0f }, vec3 size = { 0.0f, 0.0f, 0.0f }, float mass = 0.0f, Color color = White,
+		float angle = 0.0f, vec3 angle_rot = { 0.0f, 0.0f, 0.0f }, bool is_collider = true);
 
 public:
 	/*PhysBody3D* pb_snake[MAX_SNAKE];
@@ -42,6 +43,8 @@ public:
 	Cube goal_left_pilar;
 	Cube goal_right_pilar;
 	Cube goal_top_beam;
+
+	Cube main_climb;
 
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;

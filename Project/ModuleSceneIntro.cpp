@@ -29,6 +29,9 @@ bool ModuleSceneIntro::Start()
 	goal_right_pilar = CreateCube(vec3(10.0f, 5.0f, 0.0f), vec3(0.5f, 10.0f, 0.5f));
 	goal_top_beam = CreateCube(vec3(0.0f, 9.5f, 0.0f), vec3(19.5f, 1.0f, 0.5f));
 
+	main_climb = CreateCube(vec3(2.0f, 2.0f, 2.0f), vec3(3.0f, 3.0f, 3.0f), 0.0f, White, 25.0f, { 1.0f, 0.0f, 0.0f });
+
+	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
 	track_02 = "Assets/Music/Initial_D-Deja_Vu.ogg";
 
@@ -93,11 +96,16 @@ int ModuleSceneIntro::GetCurrentMusicTrack() const
 // Note: if the mass is 0.0f, we don't need to add the collision listener. We suppose in this function that
 // the mass will be 0.0f as default. It won't work otherwise. If we want to update the collider,
 // we need to crate the PhysBody3D* manually.
-Cube ModuleSceneIntro::CreateCube(vec3 position, vec3 size, float mass, Color color, bool is_collider)
+Cube ModuleSceneIntro::CreateCube(vec3 position, vec3 size, float mass, Color color, float angle, vec3 angle_rot, bool is_collider)
 {
 	Cube cube(size.x, size.y, size.z);
 	cube.SetPos(position.x, position.y, position.z);
 	cube.color = color;
+
+	if (angle != 0.0f)
+	{
+		cube.SetRotation(angle, angle_rot);
+	}
 
 	if (is_collider)
 	{
