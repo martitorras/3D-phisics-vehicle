@@ -29,7 +29,8 @@ bool ModuleSceneIntro::Start()
 	goal_right_pilar = CreateCube(vec3(10.0f, 5.0f, 0.0f), vec3(0.5f, 10.0f, 0.5f));
 	goal_top_beam = CreateCube(vec3(0.0f, 9.5f, 0.0f), vec3(19.5f, 1.0f, 0.5f));
 
-	main_climb = CreateCube(vec3(2.0f, 2.0f, 2.0f), vec3(3.0f, 3.0f, 3.0f), 0.0f, White, 25.0f, { 1.0f, 0.0f, 0.0f });
+	main_climb_start = CreateCube(vec3(0.0f, 1.0f, 32.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, -25.0f, { 1.0f, 0.0f, 0.0f });
+	main_climb_finish = CreateCube(vec3(0.0f, 1.0f, 48.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, 25.0f, { 1.0f, 0.0f, 0.0f });
 
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";

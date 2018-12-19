@@ -44,7 +44,8 @@ public:
 	Cube goal_right_pilar;
 	Cube goal_top_beam;
 
-	Cube main_climb;
+	Cube main_climb_start;
+	Cube main_climb_finish;
 
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;

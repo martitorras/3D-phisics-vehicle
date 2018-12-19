@@ -11,16 +11,16 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 	position = vec3(0.0f, 0.0f, 0.0f);
 
 	current_gear = 1u;
-	max_gears = 5u;
+	max_gears = 6u;
 
 	max_speeds_per_gear = new int[max_gears] 
 	{
-		20, 35, 65, 90, 120
+		-20, 20, 35, 65, 90, 120
 	};
 
 	max_accelerations_per_gear = new int[max_gears]
 	{						
-		800, 600, 400, 325, 175
+		-400, 800, 600, 400, 325, 175
 	};
 
 	sound_gear_shift = 0;
@@ -140,34 +140,40 @@ update_status ModulePlayer::Update(float dt)
 	{
 		switch (current_gear)
 		{
-		case 1:
-			if (vehicle->GetKmh() < (float)max_speeds_per_gear[0])
+		case -1:
+			if (vehicle->GetKmh() > (float)max_speeds_per_gear[0])
 			{
 				acceleration = max_accelerations_per_gear[0];
 			}
 			break;
-		case 2:
+		case 1:
 			if (vehicle->GetKmh() < (float)max_speeds_per_gear[1])
 			{
 				acceleration = max_accelerations_per_gear[1];
 			}
 			break;
-		case 3:
+		case 2:
 			if (vehicle->GetKmh() < (float)max_speeds_per_gear[2])
 			{
 				acceleration = max_accelerations_per_gear[2];
 			}
 			break;
-		case 4:
+		case 3:
 			if (vehicle->GetKmh() < (float)max_speeds_per_gear[3])
 			{
 				acceleration = max_accelerations_per_gear[3];
 			}
 			break;
-		case 5: 
+		case 4:
 			if (vehicle->GetKmh() < (float)max_speeds_per_gear[4])
 			{
 				acceleration = max_accelerations_per_gear[4];
+			}
+			break;
+		case 5: 
+			if (vehicle->GetKmh() < (float)max_speeds_per_gear[5])
+			{
+				acceleration = max_accelerations_per_gear[5];
 			}
 			break;
 		default: 
@@ -177,10 +183,15 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
 	{
-		if (current_gear < max_gears)
+		if (current_gear < max_gears && current_gear > 0)
 		{
-			App->audio->PlayFx(1);
 			current_gear++;
+			App->audio->PlayFx(1);
+		}
+		else if (current_gear == -1)
+		{
+			current_gear = 1;
+			App->audio->PlayFx(1);
 		}
 	}
 
@@ -188,8 +199,13 @@ update_status ModulePlayer::Update(float dt)
 	{
 		if (current_gear > 1)
 		{
-			App->audio->PlayFx(1);
 			current_gear--;
+			App->audio->PlayFx(1);
+		}
+		else if (current_gear == 1)
+		{
+			current_gear = -1;
+			App->audio->PlayFx(1);
 		}
 	}
 

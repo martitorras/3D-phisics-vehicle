@@ -23,7 +23,6 @@ public:
 	vec3 GetPosition() const;
 
 public:
-
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
@@ -33,7 +32,7 @@ private:
 	vec3 position;
 
 	// Manual transmission variables
-	uint current_gear;
+	int current_gear;
 	uint max_gears;
 	int* max_speeds_per_gear;
 	int* max_accelerations_per_gear;
