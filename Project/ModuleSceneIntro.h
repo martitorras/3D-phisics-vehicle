@@ -47,6 +47,12 @@ public:
 	Cube main_climb_start;
 	Cube main_climb_finish;
 
+	/* HINGE */
+	PhysBody3D* enemy_body;
+	Cube enemy_cube;
+	PhysBody3D* enemy_body_2;
+	Cube enemy_cube_2;
+
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;
 

@@ -8,6 +8,12 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 {
 	current_music_track = 1;
 
+	enemy_body = nullptr;
+	enemy_body_2 = nullptr;
+
+	enemy_cube = Cube(2, 2, 2);
+	enemy_cube_2 = Cube(2, 2, 2);
+
 	/* MAP MAIN PLANE */
 	plane.normal = vec3(0.0f, 1.0f, 0.0f);
 	plane.constant = 0.0f;
@@ -31,6 +37,17 @@ bool ModuleSceneIntro::Start()
 
 	main_climb_start = CreateCube(vec3(0.0f, 1.0f, 32.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, -25.0f, { 1.0f, 0.0f, 0.0f });
 	main_climb_finish = CreateCube(vec3(0.0f, 1.0f, 48.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, 25.0f, { 1.0f, 0.0f, 0.0f });
+
+	/* HINGE */
+	enemy_cube.SetPos(0.0f, 2.0f, 6.0f);
+	enemy_cube.color = Red;
+	enemy_body = App->physics->AddBody(enemy_cube, 0.0f); // We need this enemy_body pointer, in this case.
+
+	enemy_cube_2.SetPos(0.0f, 2.0f, 10.0f);
+	enemy_cube_2.color = Black;
+	enemy_body_2 = App->physics->AddBody(enemy_cube_2, 1.0f); // We need this enemy_body pointer, in this case.
+
+	App->physics->AddConstraintHinge(*enemy_body, *enemy_body_2, vec3(0, 0, 0), vec3(0, 0, 4), vec3(0, 1, 0), vec3(0, 0, 0), true);
 
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
@@ -74,6 +91,14 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	/* RENDER MAIN PLANE */
 	plane.Render();
+
+	/* RENDER HINGE ELEMENTS */
+	enemy_cube.Render();
+	enemy_cube_2.Render();
+	
+	mat4x4 transform;
+	enemy_body_2->GetTransform(transform.M);
+	enemy_cube_2.transform = transform;
 
 	/* RENDER PRIMITIVES */
 	for (p2List_item<Cube>* cube_item = cubes.getFirst(); cube_item != nullptr; cube_item = cube_item->next)
