@@ -48,13 +48,19 @@ public:
 	Cube main_climb_start;
 	Cube main_climb_finish;
 
-	/* HINGE */
+	/* HORIZONTAL HINGE */
 	PhysBody3D* enemy_body;
 	Cube enemy_cube;
 	PhysBody3D* enemy_body_2;
 	Cube enemy_cube_2;
-
 	btHingeConstraint* hinge;
+
+	/* VERTICAL HINGE */
+	PhysBody3D* vertical_enemy_body;
+	Cube vertical_enemy_cube;
+	PhysBody3D* vertical_enemy_body_2;
+	Cube vertical_enemy_cube_2;
+	btHingeConstraint* vertical_hinge;
 
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;

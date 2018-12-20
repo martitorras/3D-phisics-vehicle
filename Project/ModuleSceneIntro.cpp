@@ -10,9 +10,15 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 
 	enemy_body = nullptr;
 	enemy_body_2 = nullptr;
+	hinge = nullptr;
+	enemy_cube = Cube(2.0f, 2.0f, 2.0f);
+	enemy_cube_2 = Cube(2.0f, 2.0f, 2.0f);
 
-	enemy_cube = Cube(2, 2, 2);
-	enemy_cube_2 = Cube(2, 2, 2);
+	vertical_enemy_body = nullptr;
+	vertical_enemy_body_2 = nullptr;
+	vertical_hinge = nullptr;
+	vertical_enemy_cube = Cube(2.0f, 2.0f, 2.0f);
+	vertical_enemy_cube_2 = Cube(2.0f, 2.0f, 2.0f);
 
 	/* MAP MAIN PLANE */
 	plane.normal = vec3(0.0f, 1.0f, 0.0f);
@@ -49,6 +55,19 @@ bool ModuleSceneIntro::Start()
 
 	hinge = App->physics->AddConstraintHinge(*enemy_body, *enemy_body_2, vec3(0, 0, 0), vec3(0, 0, 4), vec3(0, 1, 0), vec3(0, 0, 0), true);
 	hinge->enableAngularMotor(true, 2.0f, INFINITE);
+
+	/* VERTICAL HINGE */
+	vertical_enemy_cube.SetPos(0.0f, 8.0f, -10.0f);
+	vertical_enemy_cube.color = Red;
+	vertical_enemy_body = App->physics->AddBody(vertical_enemy_cube, 0.0f); // We need this enemy_body pointer, in this case.
+
+	vertical_enemy_cube_2.SetPos(0.0f, 14.0f, -10.0f);
+	vertical_enemy_cube_2.color = Black;
+	vertical_enemy_body_2 = App->physics->AddBody(vertical_enemy_cube_2, 1.0f); // We need this enemy_body pointer, in this case.
+
+	vertical_hinge = App->physics->AddConstraintHinge(*vertical_enemy_body, *vertical_enemy_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(0, 0, 1), vec3(0, 0, 0), true);
+	vertical_hinge->enableAngularMotor(true, 2.0f, INFINITE);
+
 
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
@@ -93,6 +112,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	/* RENDER MAIN PLANE */
 	plane.Render();
 
+	//-----
 	/* RENDER HINGE ELEMENTS */
 	enemy_cube.Render();
 	enemy_cube_2.Render();
@@ -101,7 +121,17 @@ update_status ModuleSceneIntro::Update(float dt)
 	enemy_body_2->GetTransform(transform.M);
 	enemy_cube_2.transform = transform;
 
+	/* RENDER VERTICAL HINGE ELEMENTS */
+	vertical_enemy_cube.Render();
+	vertical_enemy_cube_2.Render();
+
+	mat4x4 transform2;
+	vertical_enemy_body_2->GetTransform(transform2.M);
+	vertical_enemy_cube_2.transform = transform2;
+	//-----
+
 	/* RENDER PRIMITIVES */
+
 	for (p2List_item<Cube>* cube_item = cubes.getFirst(); cube_item != nullptr; cube_item = cube_item->next)
 	{
 		cube_item->data.Render();
