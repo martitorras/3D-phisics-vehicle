@@ -44,6 +44,7 @@ bool ModuleSceneIntro::Start()
 	main_climb_start = CreateCube(vec3(0.0f, 1.0f, 32.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, -25.0f, { 1.0f, 0.0f, 0.0f });
 	main_climb_finish = CreateCube(vec3(0.0f, 1.0f, 48.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, 25.0f, { 1.0f, 0.0f, 0.0f });
 
+	//-----
 	/* HINGE */
 	enemy_cube.SetPos(0.0f, 2.0f, 6.0f);
 	enemy_cube.color = Red;
@@ -57,17 +58,17 @@ bool ModuleSceneIntro::Start()
 	hinge->enableAngularMotor(true, 2.0f, INFINITE);
 
 	/* VERTICAL HINGE */
-	vertical_enemy_cube.SetPos(0.0f, 8.0f, -10.0f);
+	vertical_enemy_cube.SetPos(0.0f, 10.0f, 40.0f);
 	vertical_enemy_cube.color = Red;
 	vertical_enemy_body = App->physics->AddBody(vertical_enemy_cube, 0.0f); // We need this enemy_body pointer, in this case.
 
-	vertical_enemy_cube_2.SetPos(0.0f, 14.0f, -10.0f);
+	vertical_enemy_cube_2.SetPos(0.0f, 16.0f, 40.0f);
 	vertical_enemy_cube_2.color = Black;
 	vertical_enemy_body_2 = App->physics->AddBody(vertical_enemy_cube_2, 1.0f); // We need this enemy_body pointer, in this case.
 
 	vertical_hinge = App->physics->AddConstraintHinge(*vertical_enemy_body, *vertical_enemy_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(0, 0, 1), vec3(0, 0, 0), true);
 	vertical_hinge->enableAngularMotor(true, 2.0f, INFINITE);
-
+	//-----
 
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
