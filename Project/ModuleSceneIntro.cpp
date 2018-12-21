@@ -58,6 +58,7 @@ bool ModuleSceneIntro::Start()
 	right_third_turn = CreateCube(vec3(26.5f, 1.0f, 64.0f), vec3(9.0f, 2.0f, 2.0f));
 
 	initial_bridge_ramp = CreateCube(vec3(18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, -25.0f, { 0, 0, 1 });
+	middle_bridge_platform = CreateCube(vec3(0.0f, 4.1f, 61.0f), vec3(27.0f, 0.25f, 4.0f));
 	final_bridge_ramp = CreateCube(vec3(-18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, 25.0f, { 0, 0, 1 });
 	//-----
 

@@ -65,7 +65,7 @@ public:
 	Cube right_third_turn;
 
 	Cube initial_bridge_ramp;
-
+	Cube middle_bridge_platform;
 	Cube final_bridge_ramp;
 
 	/* HORIZONTAL HINGE */
