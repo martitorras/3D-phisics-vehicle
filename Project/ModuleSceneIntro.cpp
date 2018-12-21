@@ -111,6 +111,9 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
+	/* TIMING */
+	game_timer.Start();
+
 	return ret;
 }
 
@@ -129,6 +132,9 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
+	/* TIMING */
+	time_played.create("%i", game_timer.Read() / 1000);
+
 	/* INPUT */
 	// Select current song
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)

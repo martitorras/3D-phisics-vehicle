@@ -5,6 +5,7 @@
 #include "Primitive.h"
 #include "p2SString.h"
 #include "Color.h"
+#include "Timer.h"
 #include "Bullet/include/btBulletDynamicsCommon.h"
 
 // #define MAX_SNAKE 2
@@ -104,4 +105,8 @@ public:
 	int current_music_track;
 	p2SString track_01;
 	p2SString track_02;
+
+	// Timing
+	Timer game_timer;
+	p2SString time_played;
 };
