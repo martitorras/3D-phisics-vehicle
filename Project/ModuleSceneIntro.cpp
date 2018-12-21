@@ -23,6 +23,9 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	/* MAP MAIN PLANE */
 	plane.normal = vec3(0.0f, 1.0f, 0.0f);
 	plane.constant = 0.0f;
+	
+	current_time_seconds = 0;
+	time_to_beat_seconds = 300;
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()

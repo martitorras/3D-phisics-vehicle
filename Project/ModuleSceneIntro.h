@@ -110,4 +110,7 @@ public:
 	Timer game_timer;
 	p2SString time_played_minutes_s;
 	p2SString time_played_seconds_s;
+
+	int current_time_seconds;
+	int time_to_beat_seconds;
 };
