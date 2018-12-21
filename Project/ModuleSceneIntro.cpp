@@ -56,9 +56,11 @@ bool ModuleSceneIntro::Start()
 
 	left_third_turn = CreateCube(vec3(29.0f, 1.0f, 58.0f), vec3(14.0f, 2.0f, 2.0f));
 	right_third_turn = CreateCube(vec3(26.5f, 1.0f, 64.0f), vec3(9.0f, 2.0f, 2.0f));
+
+	initial_bridge_ramp = CreateCube(vec3(18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, -25.0f, { 0, 0, 1 });
+	final_bridge_ramp = CreateCube(vec3(-18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, 25.0f, { 0, 0, 1 });
 	//-----
 
-	
 	//-----
 	/* HINGE */
 	enemy_cube.SetPos(0.0f, 2.0f, 6.0f);
