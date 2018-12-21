@@ -29,6 +29,9 @@ public:
 	Cube CreateCube(vec3 position = { 0.0f, 0.0f, 0.0f }, vec3 size = { 0.0f, 0.0f, 0.0f }, float mass = 0.0f, Color color = White,
 		float angle = 0.0f, vec3 angle_rot = { 0.0f, 0.0f, 0.0f }, bool is_collider = true);
 
+	Cylinder CreateCylinder(vec3 position = { 0.0f,0.0f,0.0f }, float radius = 1.0f, float height = 1.0f, float mass = 0.0f, Color color = White,
+		float angle = 0.0f, vec3 angle_rot = { 0.0f, 0.0f, 0.0f }, bool is_collider = true);
+
 public:
 	/*PhysBody3D* pb_snake[MAX_SNAKE];
 	Sphere s_snake[MAX_SNAKE];
@@ -62,8 +65,12 @@ public:
 	Cube vertical_enemy_cube_2;
 	btHingeConstraint* vertical_hinge;
 
+	/* MAP OBSTACLES */
+	Cylinder obstacle_01;
+
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;
+	p2List<Cylinder> cylinders;
 
 	// Music
 	int current_music_track;

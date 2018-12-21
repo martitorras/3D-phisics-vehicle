@@ -70,6 +70,9 @@ bool ModuleSceneIntro::Start()
 	vertical_hinge->enableAngularMotor(true, 2.0f, INFINITE);
 	//-----
 
+	/* MAP OBSTACLES */
+	obstacle_01 = CreateCylinder({ 15, 2, 20 }, 1.5f, 2.0f, 0.0f, Green, 90.0f, {0, 0, 1});
+
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
 	track_02 = "Assets/Music/Initial_D-Deja_Vu.ogg";
@@ -89,6 +92,7 @@ bool ModuleSceneIntro::CleanUp()
 
 	// Delete lists
 	cubes.clear();
+	cylinders.clear();
 
 	return true;
 }
@@ -132,11 +136,16 @@ update_status ModuleSceneIntro::Update(float dt)
 	//-----
 
 	/* RENDER PRIMITIVES */
-
 	for (p2List_item<Cube>* cube_item = cubes.getFirst(); cube_item != nullptr; cube_item = cube_item->next)
 	{
 		cube_item->data.Render();
 	}
+
+	for (p2List_item<Cylinder>* cylinder_item = cylinders.getFirst(); cylinder_item != nullptr; cylinder_item = cylinder_item->next)
+	{
+		cylinder_item->data.Render();
+	}
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -173,4 +182,25 @@ Cube ModuleSceneIntro::CreateCube(vec3 position, vec3 size, float mass, Color co
 	cubes.add(cube);
 
 	return cube;
+}
+
+Cylinder ModuleSceneIntro::CreateCylinder(vec3 position, float radius, float height, float mass, Color color, float angle, vec3 angle_rot, bool is_collider)
+{
+	Cylinder cylinder(radius, height);
+	cylinder.SetPos(position.x, position.y, position.z);
+	cylinder.color = color;
+
+	if (angle != 0.0f)
+	{
+		cylinder.SetRotation(angle, angle_rot);
+	}
+
+	if (is_collider)
+	{
+		App->physics->AddBody(cylinder, mass);
+	}
+
+	cylinders.add(cylinder);
+
+	return cylinder;
 }
