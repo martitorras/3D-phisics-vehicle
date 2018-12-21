@@ -183,7 +183,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
 	{
-		if (current_gear < max_gears && current_gear > 0)
+		if (current_gear < max_gears - 1 && current_gear > 0)
 		{
 			current_gear++;
 			App->audio->PlayFx(1);
