@@ -68,6 +68,9 @@ public:
 	Cube middle_bridge_platform;
 	Cube final_bridge_ramp;
 
+	Cube left_fourth_turn;
+	Cube right_fourth_turn;
+
 	/* HORIZONTAL HINGE */
 	PhysBody3D* enemy_body;
 	Cube enemy_cube;
