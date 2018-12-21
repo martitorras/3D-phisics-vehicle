@@ -50,6 +50,12 @@ bool ModuleSceneIntro::Start()
 
 	left_first_turn = CreateCube(vec3(19.0f, 1.0f, 69.0f), vec3(2.0f, 2.0f, 20.0f), 0.0f, White, 90.0f, { 0.0f, 1.0f, 0.0f });
 	right_first_turn = CreateCube(vec3(15.5f, 1.0f, 79.0f), vec3(2.0f, 2.0f, 45.0f), 0.0f, White, 90.0f, { 0.0f, 1.0f, 0.0f });
+	
+	left_second_turn = CreateCube(vec3(37.0f, 1.0f, 67.5f), vec3(2.0f, 2.0f, 21.0f));
+	right_second_turn = CreateCube(vec3(30.0f, 1.0f, 67.5f), vec3(2.0f, 2.0f, 5.0f));
+
+	left_third_turn = CreateCube(vec3(29.0f, 1.0f, 58.0f), vec3(14.0f, 2.0f, 2.0f));
+	right_third_turn = CreateCube(vec3(26.5f, 1.0f, 64.0f), vec3(9.0f, 2.0f, 2.0f));
 	//-----
 
 	
