@@ -108,5 +108,6 @@ public:
 
 	// Timing
 	Timer game_timer;
-	p2SString time_played;
+	p2SString time_played_minutes_s;
+	p2SString time_played_seconds_s;
 };

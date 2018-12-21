@@ -133,7 +133,10 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 	/* TIMING */
-	time_played.create("%i", game_timer.Read() / 1000);
+	/*time_played_minutes.create("%i", (game_timer.Read() / 1000) / 60);
+	time_played_seconds.create("%i", (game_timer.Read() / 1000) % 60);*/
+	time_played_minutes_s.create("%i", (game_timer.Read() / 1000) / 60);
+	time_played_seconds_s.create("%i", (game_timer.Read() / 1000) % 60);
 
 	/* INPUT */
 	// Select current song
