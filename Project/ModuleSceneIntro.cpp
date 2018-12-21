@@ -64,7 +64,7 @@ bool ModuleSceneIntro::Start()
 	enemy_body_2 = App->physics->AddBody(enemy_cube_2, 1.0f); // We need this enemy_body pointer, in this case.
 
 	hinge = App->physics->AddConstraintHinge(*enemy_body, *enemy_body_2, vec3(0, 0, 0), vec3(0, 0, 4), vec3(0, 1, 0), vec3(0, 0, 0), true);
-	hinge->enableAngularMotor(false, 2.0f, INFINITE);
+	hinge->enableAngularMotor(true, 2.0f, INFINITE);
 
 	/* VERTICAL HINGE */
 	vertical_enemy_cube.SetPos(0.0f, 10.0f, 40.0f);
