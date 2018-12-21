@@ -71,6 +71,14 @@ public:
 	Cube left_fourth_turn;
 	Cube right_fourth_turn;
 
+	Cube left_large_straight;
+	Cube right_large_straight;
+
+	Cube left_fifth_turn;
+	Cube right_fifth_turn;
+	
+	Cube final_closing_straight;
+
 	/* HORIZONTAL HINGE */
 	PhysBody3D* enemy_body;
 	Cube enemy_cube;

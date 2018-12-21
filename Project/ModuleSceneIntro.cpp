@@ -64,16 +64,23 @@ bool ModuleSceneIntro::Start()
 	left_fourth_turn = CreateCube(vec3(-29.0f, 1.0f, 64.0f), vec3(14.0f, 2.0f, 2.0f));
 	right_fourth_turn = CreateCube(vec3(-26.0f, 1.0f, 58.0f), vec3(8.0f, 2.0f, 2.0f));
 
+	left_large_straight = CreateCube(vec3(-29.0f, 1.0f, 12.5f), vec3(2.0f, 2.0f, 89.0f));
+	right_large_straight = CreateCube(vec3(-37.0f, 1.0f, 11.0f), vec3(2.0f, 2.0f, 108.0f));
+
+	left_fifth_turn = CreateCube(vec3(-17.5f, 1.0f, -31.0f), vec3(21.0f, 2.0f, 2.0f));
+	right_fifth_turn = CreateCube(vec3(-14.5f, 1.0f, -42.0f), vec3(43.0f, 2.0f, 2.0f));
+
+	final_closing_straight = CreateCube(vec3(8.0f, 1.0f, -36.5f), vec3(2.0f, 2.0f, 13.0f));
 	//-----
 
 	//-----
 	/* HINGE */
 	enemy_cube.SetPos(0.0f, 2.0f, 6.0f);
-	enemy_cube.color = Red;
+	enemy_cube.color = Black;
 	enemy_body = App->physics->AddBody(enemy_cube, 0.0f); // We need this enemy_body pointer, in this case.
 
 	enemy_cube_2.SetPos(0.0f, 2.0f, 10.0f);
-	enemy_cube_2.color = Black;
+	enemy_cube_2.color = Red;
 	enemy_body_2 = App->physics->AddBody(enemy_cube_2, 1.0f); // We need this enemy_body pointer, in this case.
 
 	hinge = App->physics->AddConstraintHinge(*enemy_body, *enemy_body_2, vec3(0, 0, 0), vec3(0, 0, 4), vec3(0, 1, 0), vec3(0, 0, 0), true);
@@ -81,11 +88,11 @@ bool ModuleSceneIntro::Start()
 
 	/* VERTICAL HINGE */
 	vertical_enemy_cube.SetPos(0.0f, 10.0f, 40.0f);
-	vertical_enemy_cube.color = Red;
+	vertical_enemy_cube.color = Black;
 	vertical_enemy_body = App->physics->AddBody(vertical_enemy_cube, 0.0f); // We need this enemy_body pointer, in this case.
 
 	vertical_enemy_cube_2.SetPos(0.0f, 16.0f, 40.0f);
-	vertical_enemy_cube_2.color = Black;
+	vertical_enemy_cube_2.color = Red;
 	vertical_enemy_body_2 = App->physics->AddBody(vertical_enemy_cube_2, 1.0f); // We need this enemy_body pointer, in this case.
 
 	vertical_hinge = App->physics->AddConstraintHinge(*vertical_enemy_body, *vertical_enemy_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(0, 0, 1), vec3(0, 0, 0), true);
