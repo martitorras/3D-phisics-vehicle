@@ -44,12 +44,19 @@ public:
 
 	Cube left_main_border;
 	Cube right_main_border;
+	
 	Cube goal_left_pilar;
 	Cube goal_right_pilar;
 	Cube goal_top_beam;
 
 	Cube main_climb_start;
 	Cube main_climb_finish;
+
+	Cube left_main_climb_border;
+	Cube right_main_climb_border;
+
+	Cube left_first_turn;
+	Cube right_first_turn;
 
 	/* HORIZONTAL HINGE */
 	PhysBody3D* enemy_body;

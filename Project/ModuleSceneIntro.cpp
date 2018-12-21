@@ -34,6 +34,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
+	//-----
 	/* ADD BODIES */
 	left_main_border = CreateCube(vec3(8.0f, 1.0f, 0.0f), vec3(2.0f, 2.0f, 60.0f));
 	right_main_border = CreateCube(vec3(-8.0f, 1.0f, 0.0f), vec3(2.0f, 2.0f, 60.0f));
@@ -44,6 +45,14 @@ bool ModuleSceneIntro::Start()
 	main_climb_start = CreateCube(vec3(0.0f, 1.0f, 32.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, -25.0f, { 1.0f, 0.0f, 0.0f });
 	main_climb_finish = CreateCube(vec3(0.0f, 1.0f, 48.0f), vec3(18.0f, 0.25f, 6.0f), 0.0f, White, 25.0f, { 1.0f, 0.0f, 0.0f });
 
+	left_main_climb_border = CreateCube(vec3(8.0f, 1.0f, 60.0f), vec3(2.0f, 2.0f, 20.0f));
+	right_main_climb_border = CreateCube(vec3(-8.0f, 1.0f, 65.0f), vec3(2.0f, 2.0f, 30.0f));
+
+	left_first_turn = CreateCube(vec3(19.0f, 1.0f, 69.0f), vec3(2.0f, 2.0f, 20.0f), 0.0f, White, 90.0f, { 0.0f, 1.0f, 0.0f });
+	right_first_turn = CreateCube(vec3(15.5f, 1.0f, 79.0f), vec3(2.0f, 2.0f, 45.0f), 0.0f, White, 90.0f, { 0.0f, 1.0f, 0.0f });
+	//-----
+
+	
 	//-----
 	/* HINGE */
 	enemy_cube.SetPos(0.0f, 2.0f, 6.0f);
@@ -55,7 +64,7 @@ bool ModuleSceneIntro::Start()
 	enemy_body_2 = App->physics->AddBody(enemy_cube_2, 1.0f); // We need this enemy_body pointer, in this case.
 
 	hinge = App->physics->AddConstraintHinge(*enemy_body, *enemy_body_2, vec3(0, 0, 0), vec3(0, 0, 4), vec3(0, 1, 0), vec3(0, 0, 0), true);
-	hinge->enableAngularMotor(true, 2.0f, INFINITE);
+	hinge->enableAngularMotor(false, 2.0f, INFINITE);
 
 	/* VERTICAL HINGE */
 	vertical_enemy_cube.SetPos(0.0f, 10.0f, 40.0f);
@@ -69,9 +78,9 @@ bool ModuleSceneIntro::Start()
 	vertical_hinge = App->physics->AddConstraintHinge(*vertical_enemy_body, *vertical_enemy_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(0, 0, 1), vec3(0, 0, 0), true);
 	vertical_hinge->enableAngularMotor(true, 2.0f, INFINITE);
 	//-----
-
+	
 	/* MAP OBSTACLES */
-	obstacle_01 = CreateCylinder({ 15, 2, 20 }, 1.5f, 2.0f, 0.0f, Green, 90.0f, {0, 0, 1});
+	obstacle_01 = CreateCylinder({ 17, 1, 75 }, 1.5f, 2.0f, 0.0f, Green, 90.0f, {0, 0, 1});
 
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";
