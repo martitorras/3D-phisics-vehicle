@@ -97,8 +97,11 @@ public:
 	btHingeConstraint* vertical_hinge;
 
 	/* SENSORS */
-	Cube lap_sensor_cube;
-	PhysBody3D* lap_sensor_pbody;
+	Cube starting_lap_sensor_cube;
+	PhysBody3D* starting_lap_sensor_pbody;
+
+	Cube ending_lap_sensor_cube;
+	PhysBody3D* ending_lap_sensor_pbody;
 
 	/* MAP OBSTACLES */
 	Cylinder obstacle_01;
@@ -121,4 +124,5 @@ public:
 	int time_to_beat_seconds;
 
 	int current_lap;
+	bool can_end;
 };
