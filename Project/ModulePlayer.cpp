@@ -8,7 +8,7 @@
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
-	starting_position = vec3(0.0f, 4.0f, -32.0f);
+	starting_position = vec3(0.0f, 2.0f, -32.0f);
 	position = starting_position;
 	current_gear = 1u;
 	max_gears = 6u;
@@ -127,6 +127,7 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
+
 
 	return true;
 }

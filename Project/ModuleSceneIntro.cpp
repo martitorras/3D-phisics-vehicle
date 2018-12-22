@@ -157,15 +157,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	// Restart game
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
-		current_time_seconds = 0;
-		game_timer.Start();
-		App->player->vehicle->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
-		App->player->vehicle->GetBody()->setAngularVelocity(btVector3(0, 0, 0));
-		App->player->vehicle->SetTransform(IdentityMatrix.M);
-		App->player->turn = App->player->acceleration = App->player->brake = 0.0f;
-		App->player->SetCurrentGear(1);
-		App->player->SetPosition(vec3(App->player->starting_position));
-		App->player->vehicle->SetPos(App->player->GetPosition().x, App->player->GetPosition().y, App->player->GetPosition().z);
+		ResetGame();
 	}
 
 
@@ -207,6 +199,19 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+}
+
+void ModuleSceneIntro::ResetGame()
+{
+	current_time_seconds = 0;
+	game_timer.Start();
+	App->player->vehicle->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
+	App->player->vehicle->GetBody()->setAngularVelocity(btVector3(0, 0, 0));
+	App->player->vehicle->SetTransform(IdentityMatrix.M);
+	App->player->turn = App->player->acceleration = App->player->brake = 0.0f;
+	App->player->SetCurrentGear(1);
+	App->player->SetPosition(vec3(App->player->starting_position));
+	App->player->vehicle->SetPos(App->player->GetPosition().x, App->player->GetPosition().y, App->player->GetPosition().z);
 }
 
 
