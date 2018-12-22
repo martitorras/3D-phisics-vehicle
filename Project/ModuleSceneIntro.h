@@ -125,4 +125,6 @@ public:
 
 	int current_lap;
 	bool can_end;
+
+	p2SString state;
 };

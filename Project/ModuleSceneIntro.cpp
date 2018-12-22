@@ -7,6 +7,8 @@
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+	state = "PLAYING";
+
 	current_music_track = 1;
 
 	enemy_body = nullptr;
@@ -231,6 +233,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		else if (can_end)
 		{
 			game_timer.Stop();
+			state = "WIN!";
 			LOG("YOU WIN");
 		}
 	}
