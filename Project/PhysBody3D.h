@@ -21,6 +21,7 @@ public:
 	void GetPos(float& x, float& y, float& z) const;
 
 	void SetAsSensor(bool is_sensor);
+	bool is_sensor;
 
 	btRigidBody* GetBody() const;
 
