@@ -36,7 +36,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	plane.constant = 0.0f;
 	
 	current_time_seconds = 0;
-	time_to_beat_seconds = 10;
+	time_to_beat_seconds = 38;
 
 	current_lap = 0;
 	can_end = false;
@@ -232,9 +232,15 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		}
 		else if (can_end)
 		{
+			if (current_time_seconds < time_to_beat_seconds)
+			{
+				state = "YOU WIN!";
+			}
+			else if (current_time_seconds > time_to_beat_seconds)
+			{
+				state = "YOU LOSE!";
+			}
 			game_timer.Stop();
-			state = "WIN!";
-			LOG("YOU WIN");
 		}
 	}
 

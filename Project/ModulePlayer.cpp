@@ -247,7 +247,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->GetPos(position.x, position.y, position.z);
 
 	// Window title ---------
-	char title[100];
+	char title[110];
 	sprintf_s(title, "State: %s, Speed: %.2f Km/h, Gear: %d, Turn angle: %.2f, Music: %d, Current time: %s:%s", App->scene_intro->state.GetString(), vehicle->GetKmh(), current_gear, turn * RADTODEG,
 		App->scene_intro->GetCurrentMusicTrack(), App->scene_intro->time_played_minutes_s.GetString(), App->scene_intro->time_played_seconds_s.GetString());
 	App->window->SetTitle(title);
