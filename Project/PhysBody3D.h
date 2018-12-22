@@ -20,6 +20,8 @@ public:
 	void SetPos(float x, float y, float z);
 	void GetPos(float& x, float& y, float& z) const;
 
+	void SetAsSensor(bool is_sensor);
+
 	btRigidBody* GetBody() const;
 
 private:
