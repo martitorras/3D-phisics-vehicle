@@ -234,11 +234,11 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		{
 			if (current_time_seconds < time_to_beat_seconds)
 			{
-				state = "YOU WIN!";
+				state = "YOU WIN! Press 'R' to restart.";
 			}
 			else if (current_time_seconds > time_to_beat_seconds)
 			{
-				state = "YOU LOSE!";
+				state = "YOU LOSE! Press 'R' to restart.";
 			}
 			game_timer.Stop();
 		}
@@ -252,6 +252,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 void ModuleSceneIntro::ResetGame()
 {
+	state = "PLAYING";
 	current_lap = 0;
 	can_end = false;
 	current_time_seconds = 0;
