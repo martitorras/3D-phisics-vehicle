@@ -148,9 +148,12 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 	/* TIMING */
-	time_played_minutes_s.create("%i", (game_timer.Read() / 1000) / 60);
-	time_played_seconds_s.create("%i", (game_timer.Read() / 1000) % 60);
-	current_time_seconds = game_timer.Read() / 1000;
+	if (current_lap > 0)
+	{
+		time_played_minutes_s.create("%i", (game_timer.Read() / 1000) / 60);
+		time_played_seconds_s.create("%i", (game_timer.Read() / 1000) % 60);
+		current_time_seconds = game_timer.Read() / 1000;
+	}
 
 	/* INPUT */
 	// Select current song
@@ -212,14 +215,20 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	if (body1 == lap_sensor_pbody && body2 == App->player->vehicle)
 	{
-		ResetGame();
+		if (current_lap == 0)
+		{
+			game_timer.Start();
+			current_lap = 1;
+		}
 	}
 }
 
 void ModuleSceneIntro::ResetGame()
 {
+	current_lap = 0;
+	time_played_minutes_s = "";
+	time_played_seconds_s = "";
 	current_time_seconds = 0;
-	game_timer.Start();
 	App->player->vehicle->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
 	App->player->vehicle->GetBody()->setAngularVelocity(btVector3(0, 0, 0));
 	App->player->vehicle->SetTransform(IdentityMatrix.M);
