@@ -1,13 +1,13 @@
 ﻿# 3D phisics vehicle
 
 ## About
-This is a 3D single player student game. You control a vehicle which goes through a circuit and has to reach three times the finishing line under 5 minutes.
+This is a 3D single player student game. You control a vehicle which goes through a circuit and has to complete the map under 36 seconds!
 
 Our game is like the prologue of Indiana Jones: Raiders Of The Lost Ark. The car being Indiana Jones and having obstacles like a giant ball pursuing you. Our vehicle is a mining trolley.
 
 Some obstacles:
 
-• Giant ball following you.
+• Giant ball following you (TODO).
 
 • Rotatory hammers (represented as cubes).
 

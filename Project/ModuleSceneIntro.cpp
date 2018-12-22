@@ -36,7 +36,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	plane.constant = 0.0f;
 	
 	current_time_seconds = 0;
-	time_to_beat_seconds = 38;
+	time_to_beat_seconds = 36;
 
 	current_lap = 0;
 	can_end = false;
