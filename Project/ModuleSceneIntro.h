@@ -77,6 +77,11 @@ public:
 	Cube left_large_straight;
 	Cube right_large_straight;
 
+	Cube left_large_straight_wall;
+	Cube right_large_straight_wall;
+
+	Cube large_straight_roof;
+
 	Cube left_fifth_turn;
 	Cube right_fifth_turn;
 	
