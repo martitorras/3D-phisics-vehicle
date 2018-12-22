@@ -96,6 +96,10 @@ public:
 	Cube vertical_enemy_cube_2;
 	btHingeConstraint* vertical_hinge;
 
+	/* SENSORS */
+	Cube lap_sensor_cube;
+	PhysBody3D* lap_sensor_pbody;
+
 	/* MAP OBSTACLES */
 	Cylinder obstacle_01;
 
@@ -115,4 +119,6 @@ public:
 
 	int current_time_seconds;
 	int time_to_beat_seconds;
+
+	int current_lap;
 };

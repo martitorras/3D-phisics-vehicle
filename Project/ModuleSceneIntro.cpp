@@ -21,12 +21,19 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	vertical_enemy_cube = Cube(2.0f, 2.0f, 2.0f);
 	vertical_enemy_cube_2 = Cube(2.0f, 2.0f, 2.0f);
 
+	/* SENSORS */
+	lap_sensor_cube.size = vec3(14.0f, 2.0f, 2.0f);
+	lap_sensor_cube.SetPos(0.0f, 1.0f, 0.0f);
+	lap_sensor_pbody = nullptr;
+
 	/* MAP MAIN PLANE */
 	plane.normal = vec3(0.0f, 1.0f, 0.0f);
 	plane.constant = 0.0f;
 	
 	current_time_seconds = 0;
 	time_to_beat_seconds = 300;
+
+	current_lap = 0;
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -102,6 +109,11 @@ bool ModuleSceneIntro::Start()
 	vertical_hinge = App->physics->AddConstraintHinge(*vertical_enemy_body, *vertical_enemy_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(0, 0, 1), vec3(0, 0, 0), true);
 	vertical_hinge->enableAngularMotor(true, 2.0f, INFINITE);
 	//-----
+
+	/* SENSORS */
+	lap_sensor_pbody = App->physics->AddBody(lap_sensor_cube, 0.0f);
+	lap_sensor_pbody->SetAsSensor(true);
+	lap_sensor_pbody->collision_listeners.add(this);
 	
 	/* MAP OBSTACLES */
 	obstacle_01 = CreateCylinder({ 17, 1, 75 }, 1.5f, 2.0f, 0.0f, Green, 90.0f, {0, 0, 1});
@@ -115,7 +127,6 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
-	/* TIMING */
 	game_timer.Start();
 
 	return ret;
@@ -199,6 +210,10 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+	if (body1 == lap_sensor_pbody && body2 == App->player->vehicle)
+	{
+		ResetGame();
+	}
 }
 
 void ModuleSceneIntro::ResetGame()
