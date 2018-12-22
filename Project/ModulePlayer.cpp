@@ -8,8 +8,8 @@
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
-	position = vec3(0.0f, 0.0f, -32.0f);
-
+	starting_position = vec3(0.0f, 4.0f, -32.0f);
+	position = starting_position;
 	current_gear = 1u;
 	max_gears = 6u;
 
@@ -258,4 +258,16 @@ update_status ModulePlayer::Update(float dt)
 vec3 ModulePlayer::GetPosition() const
 {
 	return position;
+}
+
+void ModulePlayer::SetPosition(const vec3& position)
+{
+	this->position.x = position.x;
+	this->position.y = position.y;
+	this->position.z = position.z;
+}
+
+void ModulePlayer::SetCurrentGear(const int& c_gear)
+{
+	this->current_gear = c_gear;
 }

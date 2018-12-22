@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "PhysVehicle3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -136,10 +137,9 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 	/* TIMING */
-	/*time_played_minutes.create("%i", (game_timer.Read() / 1000) / 60);
-	time_played_seconds.create("%i", (game_timer.Read() / 1000) % 60);*/
 	time_played_minutes_s.create("%i", (game_timer.Read() / 1000) / 60);
 	time_played_seconds_s.create("%i", (game_timer.Read() / 1000) % 60);
+	current_time_seconds = game_timer.Read() / 1000;
 
 	/* INPUT */
 	// Select current song
@@ -152,6 +152,20 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		current_music_track = 2;
 		App->audio->PlayMusic(track_02.GetString());
+	}
+
+	// Restart game
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		current_time_seconds = 0;
+		game_timer.Start();
+		App->player->vehicle->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
+		App->player->vehicle->GetBody()->setAngularVelocity(btVector3(0, 0, 0));
+		App->player->vehicle->SetTransform(IdentityMatrix.M);
+		App->player->turn = App->player->acceleration = App->player->brake = 0.0f;
+		App->player->SetCurrentGear(1);
+		App->player->SetPosition(vec3(App->player->starting_position));
+		App->player->vehicle->SetPos(App->player->GetPosition().x, App->player->GetPosition().y, App->player->GetPosition().z);
 	}
 
 

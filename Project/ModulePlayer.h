@@ -21,12 +21,17 @@ public:
 
 public:
 	vec3 GetPosition() const;
+	void SetPosition(const vec3& position);
+	void SetCurrentGear(const int& c_gear);
 
 public:
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
 	float brake;
+
+public:
+	vec3 starting_position;
 
 private:
 	vec3 position;

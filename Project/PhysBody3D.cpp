@@ -56,3 +56,8 @@ void PhysBody3D::GetPos(float& x, float& y, float& z) const
 	y = (float)origin.getY();
 	z = (float)origin.getZ();
 }
+
+btRigidBody* PhysBody3D::GetBody() const
+{
+	return this->body;
+}
