@@ -118,6 +118,7 @@ update_status ModulePhysics3D::Update(float dt)
 	if(debug == true)
 	{
 		world->debugDrawWorld();
+		App->physics->SetDebugDraw();
 
 		// Render vehicles
 		p2List_item<PhysVehicle3D*>* item = vehicles.getFirst();
@@ -189,6 +190,11 @@ bool ModulePhysics3D::CleanUp()
 	delete world;
 
 	return true;
+}
+
+void ModulePhysics3D::SetDebugDraw()
+{
+	debug_draw->setDebugMode(1);
 }
 
 // ---------------------------------------------------------

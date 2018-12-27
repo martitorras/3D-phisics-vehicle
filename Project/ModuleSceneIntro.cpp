@@ -131,7 +131,13 @@ bool ModuleSceneIntro::Start()
 	ending_lap_sensor_pbody->collision_listeners.add(this);
 	
 	/* MAP OBSTACLES */
-	obstacle_01 = CreateCylinder({ 17, 1, 75 }, 1.5f, 2.0f, 0.0f, Green, 90.0f, {0, 0, 1});
+	obstacle_01 = CreateCylinder({ 17, 1, 75 }, 1.5f, 2.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
+	obstacle_02 = CreateCylinder({ -31.8f, 4.0f, 0 }, 1.15f, 8.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
+	obstacle_03 = CreateCylinder({ -34.2f, 4.0f, 16.0f }, 1.15f, 8.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
+	obstacle_04 = CreateCylinder({ -31.8f, 4.0f, 32.0f }, 1.15f, 8.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
+	obstacle_05 = CreateCylinder({ -34.2f, 4.0f, -16.0f }, 1.15f, 8.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
+	obstacle_06 = CreateCylinder({ -16, 2.0f, -38.0f }, 1.15f, 4.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
+	obstacle_07 = CreateCylinder({ -4, 2.0f, -32.0f }, 1.15f, 4.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
 
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";

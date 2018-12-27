@@ -110,6 +110,12 @@ public:
 
 	/* MAP OBSTACLES */
 	Cylinder obstacle_01;
+	Cylinder obstacle_02;
+	Cylinder obstacle_03;
+	Cylinder obstacle_04;
+	Cylinder obstacle_05;
+	Cylinder obstacle_06;
+	Cylinder obstacle_07;
 
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;
