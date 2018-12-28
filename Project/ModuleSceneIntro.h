@@ -87,7 +87,12 @@ public:
 
 	//Cube left_fifth_turn;
 	//Cube right_fifth_turn;
-	
+	PhysBody3D* sphere_body;
+	Sphere enemy_sphere;
+	PhysBody3D* sphere_body_2;
+	Cube sphere_cube;
+	btHingeConstraint* sphere_hinge;
+
 	Cube final_closing_straight;
 
 	/* HORIZONTAL HINGE */

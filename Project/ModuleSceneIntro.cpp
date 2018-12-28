@@ -23,6 +23,12 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	vertical_enemy_cube = Cube(2.0f, 2.0f, 2.0f);
 	vertical_enemy_cube_2 = Cube(2.0f, 2.0f, 2.0f);
 
+	sphere_body = nullptr;
+	sphere_body_2 = nullptr;
+	sphere_hinge = nullptr;
+	sphere_cube = Cube(2.0f, 2.0f, 2.0f);
+	enemy_sphere = Sphere(2.0f);
+
 	/* SENSORS */
 	starting_lap_sensor_cube.size = vec3(14.0f, 2.0f, 2.0f);
 	starting_lap_sensor_cube.SetPos(0.0f, 1.0f, 0.0f);
@@ -76,7 +82,7 @@ bool ModuleSceneIntro::Start()
 
 	initial_bridge_ramp = CreateCube(vec3(18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, -25.0f, { 0, 0, 1 });
 	middle_bridge_platform = CreateCube(vec3(0.0f, 4.1f, 61.0f), vec3(27.0f, 0.25f, 4.0f));
-	final_bridge_ramp = CreateCube(vec3(-18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, 25.0f, { 0, 0, 1 });
+	//final_bridge_ramp = CreateCube(vec3(-18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, 25.0f, { 0, 0, 1 });
 	
 	left_fourth_turn = CreateCube(vec3(-29.0f, 1.0f, 64.0f), vec3(14.0f, 2.0f, 2.0f));
 	right_fourth_turn = CreateCube(vec3(-26.0f, 1.0f, 58.0f), vec3(8.0f, 2.0f, 2.0f));
@@ -97,6 +103,18 @@ bool ModuleSceneIntro::Start()
 
 	final_closing_straight = CreateCube(vec3(8.0f, 1.0f, -36.5f), vec3(2.0f, 2.0f, 13.0f));
 	//-----
+
+	sphere_cube.SetPos(-33.0f, 13.5f, -60.0f);
+	sphere_cube.color = Black;
+	sphere_body = App->physics->AddBody(sphere_cube, 0.0f); // We need this enemy_body pointer, in this case.
+
+	enemy_sphere.SetPos(-33.0f, 7.5f, -60.0f);
+	enemy_sphere.color = Red;
+	enemy_sphere.radius = 2.0f;
+	sphere_body_2 = App->physics->AddBody(enemy_sphere, 1.0f); // We need this enemy_body pointer, in this case.
+
+	sphere_hinge = App->physics->AddConstraintHinge(*sphere_body, *sphere_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(1, 0, 0), vec3(0, 0, 0), true);
+	sphere_hinge->enableAngularMotor(true, 3.0f, INFINITE);
 
 	//-----
 	/* HINGE */
@@ -203,10 +221,18 @@ update_status ModuleSceneIntro::Update(float dt)
 	plane.Render();
 
 	//-----
+
+	sphere_cube.Render();
+	enemy_sphere.Render();
+
+	mat4x4 transform3;
+	sphere_body_2->GetTransform(transform3.M);
+	enemy_sphere.transform = transform3;
+
 	/* RENDER HINGE ELEMENTS */
 	enemy_cube.Render();
 	enemy_cube_2.Render();
-	
+
 	mat4x4 transform;
 	enemy_body_2->GetTransform(transform.M);
 	enemy_cube_2.transform = transform;
@@ -230,7 +256,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		cylinder_item->data.Render();
 	}
-	
 
 	return UPDATE_CONTINUE;
 }
