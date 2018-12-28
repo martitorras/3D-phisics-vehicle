@@ -82,8 +82,11 @@ public:
 
 	Cube large_straight_roof;
 
-	Cube left_fifth_turn;
-	Cube right_fifth_turn;
+	Cube main_climb_start2;
+	Cube main_climb_finish2;
+
+	//Cube left_fifth_turn;
+	//Cube right_fifth_turn;
 	
 	Cube final_closing_straight;
 
