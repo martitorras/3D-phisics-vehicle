@@ -29,12 +29,18 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	sphere_cube = Cube(2.0f, 2.0f, 2.0f);
 	enemy_sphere = Sphere(2.0f);
 
+	sphere_body3 = nullptr;
+	sphere_body_23 = nullptr;
+	sphere_hinge3 = nullptr;
+	sphere_cube3 = Cube(2.0f, 2.0f, 2.0f);
+	enemy_sphere3 = Sphere(2.0f);
+
 	/* SENSORS */
 	starting_lap_sensor_cube.size = vec3(14.0f, 2.0f, 2.0f);
 	starting_lap_sensor_cube.SetPos(0.0f, 1.0f, 0.0f);
 	starting_lap_sensor_pbody = nullptr;
 	ending_lap_sensor_cube.size = vec3(14.0f, 2.0f, 2.0f);
-	ending_lap_sensor_cube.SetPos(0.0f, 1.0f, 60.5f);
+	ending_lap_sensor_cube.SetPos(0.0f, -10.0f, 0.0f);
 	ending_lap_sensor_pbody = nullptr;
 
 	/* MAP MAIN PLANE */
@@ -103,7 +109,17 @@ bool ModuleSceneIntro::Start()
 
 	final_closing_straight = CreateCube(vec3(8.0f, 1.0f, -36.5f), vec3(2.0f, 2.0f, 13.0f));
 
-	final_jump = CreateCube(vec3(-10.0f, 0.0f, -112.0f), vec3(6.0f, 0.25f, 10.0f), 0.0f, White, 18.0f, { 0, 0, 1 });
+	final_jump = CreateCube(vec3(-28.0f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 35.0f, { 0, 0, 1 });
+	final_jump_r = CreateCube(vec3(-25.4f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 145.0f, { 0, 0, 1 });
+
+	final_jump2 = CreateCube(vec3(-22.0f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 35.0f, { 0, 0, 1 });
+	final_jump_r2 = CreateCube(vec3(-19.4f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 145.0f, { 0, 0, 1 });
+
+	final_jump3 = CreateCube(vec3(-16.0f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 35.0f, { 0, 0, 1 });
+	final_jump_r3 = CreateCube(vec3(-13.4f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 145.0f, { 0, 0, 1 });
+
+	final_jump4 = CreateCube(vec3(-10.0f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 35.0f, { 0, 0, 1 });
+	final_jump_r4 = CreateCube(vec3(-7.4f, 0.3f, -112.0f), vec3(3.0f, 0.25f, 10.0f), 0.0f, White, 145.0f, { 0, 0, 1 });
 
 	final_left = CreateCube(vec3(8.0f, 1.0f, -69.0f), vec3(2.0f, 2.0f, 100.0f));
 	final_right = CreateCube(vec3(-8.0f, 1.0f, -58.0f), vec3(2.0f, 2.0f, 100.0f));
@@ -178,6 +194,26 @@ bool ModuleSceneIntro::Start()
 	obstacle_05 = CreateCylinder({ -34.2f, 4.0f, -16.0f }, 1.15f, 8.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
 	obstacle_06 = CreateCylinder({ -16, 2.0f, -38.0f }, 1.15f, 4.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
 	obstacle_07 = CreateCylinder({ -4, 2.0f, -32.0f }, 1.15f, 4.0f, 0.0f, Green, 90.0f, { 0, 0, 1 });
+
+	m_obstacle_01 = CreateCylinder({ -7.0f, 4.0f, -40.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+	m_obstacle_02 = CreateCylinder({ 7.0f, 4.0f, -40.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+	m_obstacle_03 = CreateCylinder({ -7.0f, 4.0f, -60.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+	m_obstacle_04 = CreateCylinder({ 7.0f, 4.0f, -60.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+
+	m_obstacle_05 = CreateCylinder({ 0.0f, 0.1f, -40.0f }, 1.15f, 16.0f, 0.0f, Green, 0.0f, { 0, 0, 1 });
+	m_obstacle_06 = CreateCylinder({ 0.0f, 0.1f, -50.0f }, 1.15f, 16.0f, 0.0f, Green, 0.0f, { 0, 0, 1 });
+	m_obstacle_07 = CreateCylinder({ 0.0f, 0.1f, -60.0f }, 1.15f, 16.0f, 0.0f, Green, 0.0f, { 0, 0, 1 });
+	m_obstacle_08 = CreateCylinder({ 0.0f, 0.1f, -70.0f }, 1.15f, 16.0f, 0.0f, Green, 0.0f, { 0, 0, 1 });
+
+	m_obstacle_09 = CreateCylinder({ -7.0f, 4.0f, -80.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+	m_obstacle_10 = CreateCylinder({ 7.0f, 4.0f, -80.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+	m_obstacle_11 = CreateCylinder({ -7.0f, 4.0f, -100.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+	m_obstacle_12 = CreateCylinder({ 7.0f, 4.0f, -100.0f }, 1.15f, 8.0f, 0.0f, White, 90.0f, { 0, 0, 1 });
+
+	m_obstacle_13 = CreateCylinder({ 0.0f, 0.1f, -80.0f }, 1.15f, 16.0f, 0.0f, Green, 0.0f, { 0, 0, 1 });
+	m_obstacle_14 = CreateCylinder({ 0.0f, 0.1f, -90.0f }, 1.15f, 16.0f, 0.0f, Green, 0.0f, { 0, 0, 1 });
+	m_obstacle_15 = CreateCylinder({ 0.0f, 0.1f, -100.0f }, 1.15f, 16.0f, 0.0f, Green, 0.0f, { 0, 0, 1 });
+	
 
 	// ---------
 	track_01 = "Assets/Music/Naoki_Naotyu-SpeedWorld.ogg";

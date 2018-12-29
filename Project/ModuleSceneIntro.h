@@ -89,6 +89,13 @@ public:
 	Cube right_fifth_turn;
 
 	Cube final_jump;
+	Cube final_jump_r;
+	Cube final_jump2;
+	Cube final_jump_r2;
+	Cube final_jump3;
+	Cube final_jump_r3;
+	Cube final_jump4;
+	Cube final_jump_r4;
 
 	Cube final_left;
 	Cube final_right;
@@ -139,6 +146,22 @@ public:
 	Cylinder obstacle_05;
 	Cylinder obstacle_06;
 	Cylinder obstacle_07;
+
+	Cylinder m_obstacle_01;
+	Cylinder m_obstacle_02;
+	Cylinder m_obstacle_03;
+	Cylinder m_obstacle_04;
+	Cylinder m_obstacle_05;
+	Cylinder m_obstacle_06;
+	Cylinder m_obstacle_07;
+	Cylinder m_obstacle_08;
+	Cylinder m_obstacle_09;
+	Cylinder m_obstacle_10;
+	Cylinder m_obstacle_11;
+	Cylinder m_obstacle_12;
+	Cylinder m_obstacle_13;
+	Cylinder m_obstacle_14;
+	Cylinder m_obstacle_15;
 
 	/* STORE PRIMITIVES SO WE CAN BLIT A LOT MORE EASILY */
 	p2List<Cube> cubes;
