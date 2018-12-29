@@ -360,7 +360,6 @@ void ModuleSceneIntro::ResetGame()
 	current_time_seconds = 0;
 	time_played_minutes_s = "";
 	time_played_seconds_s = "";
-	current_time_seconds = 0;
 	App->player->vehicle->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
 	App->player->vehicle->GetBody()->setAngularVelocity(btVector3(0, 0, 0));
 	App->player->vehicle->SetTransform(IdentityMatrix.M);

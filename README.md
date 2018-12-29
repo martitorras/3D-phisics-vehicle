@@ -9,6 +9,8 @@ Remember that the trolley has manual transmission, so you need to change gears. 
 
 You may need to repositionate the game window to see the statistics of the current game at the top left of the window.
 
+The current lap record is 00:58 minutes! Will you be able to to a faster time?
+
 Enjoy!
 
 Some obstacles:
@@ -54,6 +56,8 @@ Torras Isanta, Martí.
 **1:** Music track 01
 
 **2:** Music track 02
+
+**Escape:** Close the application
 
 ## Innovation
 
