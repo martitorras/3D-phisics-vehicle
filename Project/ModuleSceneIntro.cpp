@@ -40,7 +40,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	starting_lap_sensor_cube.SetPos(0.0f, 1.0f, 0.0f);
 	starting_lap_sensor_pbody = nullptr;
 	ending_lap_sensor_cube.size = vec3(14.0f, 2.0f, 2.0f);
-	ending_lap_sensor_cube.SetPos(0.0f, -10.0f, 0.0f);
+	ending_lap_sensor_cube.SetPos(0.0f, 1.0f, 60.0f);
 	ending_lap_sensor_pbody = nullptr;
 
 	/* MAP MAIN PLANE */
@@ -48,7 +48,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	plane.constant = 0.0f;
 	
 	current_time_seconds = 0;
-	time_to_beat_seconds = 36;
+	time_to_beat_seconds = 65;
 
 	current_lap = 0;
 	can_end = false;
