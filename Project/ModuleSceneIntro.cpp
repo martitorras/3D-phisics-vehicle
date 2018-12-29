@@ -87,11 +87,11 @@ bool ModuleSceneIntro::Start()
 	left_fourth_turn = CreateCube(vec3(-29.0f, 1.0f, 64.0f), vec3(14.0f, 2.0f, 2.0f));
 	right_fourth_turn = CreateCube(vec3(-26.0f, 1.0f, 58.0f), vec3(8.0f, 2.0f, 2.0f));
 
-	left_large_straight = CreateCube(vec3(-29.0f, 1.0f, -16.5f), vec3(2.0f, 2.0f, 150.0f));
-	right_large_straight = CreateCube(vec3(-37.0f, 1.0f, -14.0f), vec3(2.0f, 2.0f, 169.0f));
+	left_large_straight = CreateCube(vec3(-29.0f, 1.0f, -25.5f), vec3(2.0f, 2.0f, 165.0f));
+	right_large_straight = CreateCube(vec3(-37.0f, 1.0f, -26.5f), vec3(2.0f, 2.0f, 181.0f));
 
-	left_large_straight_wall = CreateCube(vec3(-29.0f, 4.5f, -10.5f), vec3(2.0f, 5.0f, 150.0f));
-	right_large_straight_wall = CreateCube(vec3(-37.0f, 4.5f, -10.5f), vec3(2.0f, 5.0f, 150.0f));
+	left_large_straight_wall = CreateCube(vec3(-29.0f, 4.5f, -17.5f), vec3(2.0f, 5.0f, 165.0f));
+	right_large_straight_wall = CreateCube(vec3(-37.0f, 4.5f, -17.5f), vec3(2.0f, 5.0f, 165.0f));
 
 	large_straight_roof = CreateCube(vec3(-33.0f, 8.0f, 12.5f), vec3(10.0f, 2.0f, 89.0f));
 
