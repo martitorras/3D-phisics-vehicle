@@ -57,6 +57,8 @@ Torras Isanta, Martí.
 
 **2:** Music track 02
 
+**F1:** Debug mode
+
 **Escape:** Close the application
 
 ## Innovation
