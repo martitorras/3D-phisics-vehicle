@@ -82,7 +82,7 @@ bool ModuleSceneIntro::Start()
 
 	initial_bridge_ramp = CreateCube(vec3(18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, -25.0f, { 0, 0, 1 });
 	middle_bridge_platform = CreateCube(vec3(0.0f, 4.1f, 61.0f), vec3(27.0f, 0.25f, 4.0f));
-	//final_bridge_ramp = CreateCube(vec3(-18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, 25.0f, { 0, 0, 1 });
+	final_bridge_ramp = CreateCube(vec3(-18.0f, 2.0f, 61.0f), vec3(10.0f, 0.25f, 4.0f), 0.0f, White, 25.0f, { 0, 0, 1 });
 	
 	left_fourth_turn = CreateCube(vec3(-29.0f, 1.0f, 64.0f), vec3(14.0f, 2.0f, 2.0f));
 	right_fourth_turn = CreateCube(vec3(-26.0f, 1.0f, 58.0f), vec3(8.0f, 2.0f, 2.0f));
@@ -98,10 +98,16 @@ bool ModuleSceneIntro::Start()
 	main_climb_start2 = CreateCube(vec3(-33.0f, 3.4f, -75.0f), vec3(7.0f, 0.25f, 66.0f), 0.0f, White, -06.0f, { 1.0f, 0.0f, 0.0f });
 	main_climb_finish2 = CreateCube(vec3(-33.0f, 3.4f, -35.0f), vec3(7.0f, 0.25f, 16.0f), 0.0f, White, 25.0f, { 1.0f, 0.0f, 0.0f });
 
-	//left_fifth_turn = CreateCube(vec3(-17.5f, 1.0f, -31.0f), vec3(21.0f, 2.0f, 2.0f));
-	//right_fifth_turn = CreateCube(vec3(-14.5f, 1.0f, -42.0f), vec3(43.0f, 2.0f, 2.0f));
+	left_fifth_turn = CreateCube(vec3(-17.5f, 1.0f, -107.0f), vec3(21.0f, 2.0f, 2.0f));
+	right_fifth_turn = CreateCube(vec3(-14.5f, 1.0f, -118.0f), vec3(43.0f, 2.0f, 2.0f));
 
 	final_closing_straight = CreateCube(vec3(8.0f, 1.0f, -36.5f), vec3(2.0f, 2.0f, 13.0f));
+
+	final_jump = CreateCube(vec3(-10.0f, 0.0f, -112.0f), vec3(6.0f, 0.25f, 10.0f), 0.0f, White, 18.0f, { 0, 0, 1 });
+
+	final_left = CreateCube(vec3(8.0f, 1.0f, -69.0f), vec3(2.0f, 2.0f, 100.0f));
+	final_right = CreateCube(vec3(-8.0f, 1.0f, -58.0f), vec3(2.0f, 2.0f, 100.0f));
+
 	//-----
 	//First hinge going down
 	sphere_cube.SetPos(-33.0f, 13.5f, -60.0f);
@@ -114,7 +120,7 @@ bool ModuleSceneIntro::Start()
 	sphere_body_2 = App->physics->AddBody(enemy_sphere, 1.0f); // We need this enemy_body pointer, in this case.
 
 	sphere_hinge = App->physics->AddConstraintHinge(*sphere_body, *sphere_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(1, 0, 0), vec3(0, 0, 0), true);
-	sphere_hinge->enableAngularMotor(true, 3.0f, INFINITE);
+	sphere_hinge->enableAngularMotor(true, 2.0f, INFINITE);
 
 	//Second hinge going down
 	sphere_cube3.SetPos(-33.0f, 12.5f, -80.0f);

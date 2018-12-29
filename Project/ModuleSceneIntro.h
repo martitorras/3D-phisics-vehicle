@@ -85,8 +85,13 @@ public:
 	Cube main_climb_start2;
 	Cube main_climb_finish2;
 
-	//Cube left_fifth_turn;
-	//Cube right_fifth_turn;
+	Cube left_fifth_turn;
+	Cube right_fifth_turn;
+
+	Cube final_jump;
+
+	Cube final_left;
+	Cube final_right;
 
 	//First hinge going down
 	PhysBody3D* sphere_body;
