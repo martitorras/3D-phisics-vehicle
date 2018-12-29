@@ -103,7 +103,7 @@ bool ModuleSceneIntro::Start()
 
 	final_closing_straight = CreateCube(vec3(8.0f, 1.0f, -36.5f), vec3(2.0f, 2.0f, 13.0f));
 	//-----
-
+	//First hinge going down
 	sphere_cube.SetPos(-33.0f, 13.5f, -60.0f);
 	sphere_cube.color = Black;
 	sphere_body = App->physics->AddBody(sphere_cube, 0.0f); // We need this enemy_body pointer, in this case.
@@ -115,6 +115,19 @@ bool ModuleSceneIntro::Start()
 
 	sphere_hinge = App->physics->AddConstraintHinge(*sphere_body, *sphere_body_2, vec3(0, 0, 0), vec3(0, 6, 0), vec3(1, 0, 0), vec3(0, 0, 0), true);
 	sphere_hinge->enableAngularMotor(true, 3.0f, INFINITE);
+
+	//Second hinge going down
+	sphere_cube3.SetPos(-33.0f, 12.5f, -80.0f);
+	sphere_cube3.color = Black;
+	sphere_body3 = App->physics->AddBody(sphere_cube3, 0.0f); // We need this enemy_body pointer, in this case.
+
+	enemy_sphere3.SetPos(-33.0f, 6.5f, -80.0f);
+	enemy_sphere3.color = Red;
+	enemy_sphere3.radius = 2.0f;
+	sphere_body_23 = App->physics->AddBody(enemy_sphere3, 1.0f); // We need this enemy_body pointer, in this case.
+
+	sphere_hinge3 = App->physics->AddConstraintHinge(*sphere_body3, *sphere_body_23, vec3(0, 0, 0), vec3(0, 6, 0), vec3(1, 0, 0), vec3(0, 0, 0), true);
+	sphere_hinge3->enableAngularMotor(true, 3.0f, INFINITE);
 
 	//-----
 	/* HINGE */
@@ -221,13 +234,21 @@ update_status ModuleSceneIntro::Update(float dt)
 	plane.Render();
 
 	//-----
-
+	//Frist hinge going down
 	sphere_cube.Render();
 	enemy_sphere.Render();
 
 	mat4x4 transform3;
 	sphere_body_2->GetTransform(transform3.M);
 	enemy_sphere.transform = transform3;
+
+	//Second hinge going down
+	sphere_cube3.Render();
+	enemy_sphere3.Render();
+
+	mat4x4 transform4;
+	sphere_body_23->GetTransform(transform4.M);
+	enemy_sphere3.transform = transform4;
 
 	/* RENDER HINGE ELEMENTS */
 	enemy_cube.Render();

@@ -87,11 +87,21 @@ public:
 
 	//Cube left_fifth_turn;
 	//Cube right_fifth_turn;
+
+	//First hinge going down
 	PhysBody3D* sphere_body;
 	Sphere enemy_sphere;
 	PhysBody3D* sphere_body_2;
 	Cube sphere_cube;
 	btHingeConstraint* sphere_hinge;
+
+	//Second hinge going down
+	PhysBody3D* sphere_body3;
+	Sphere enemy_sphere3;
+	PhysBody3D* sphere_body_23;
+	Cube sphere_cube3;
+	btHingeConstraint* sphere_hinge3;
+
 
 	Cube final_closing_straight;
 
